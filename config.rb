@@ -77,6 +77,7 @@ $share_home=true
 #$vm_gui = false
 $vm_memory = 2048
 $vm_cpus = 2
+$vm_disk_size=20 # Size in gb
 
 # Share additional folders to the CoreOS VMs
 # For example,

@@ -20,6 +20,7 @@ $vm_memory = 1024
 $vm_cpus = 1
 $shared_folders = {}
 $forwarded_ports = {}
+$vm_disk_size = 8
 
 # Attempt to apply the deprecated environment variable NUM_INSTANCES to
 # $num_instances while allowing config.rb to override it
@@ -68,7 +69,7 @@ Vagrant.configure("2") do |config|
 
     file_to_disk = "docker.vdi"
     v.customize ["storagectl", :id, "--name", "SATA Controller", "--add", "sata", "--controller", "IntelAHCI"]
-    v.customize ["createhd", "--filename", file_to_disk, "--size", 60 * 1024, "--format", "VDI"]
+    v.customize ["createhd", "--filename", file_to_disk, "--size", $vm_disk_size * 1024, "--format", "VDI"]
     v.customize ["storageattach", :id, "--storagectl", "SATA Controller", "--port", 0, "--device", 0, "--type", "hdd", "--medium", file_to_disk]
   end
 
